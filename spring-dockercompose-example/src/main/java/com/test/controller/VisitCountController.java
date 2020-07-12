@@ -17,13 +17,14 @@ public class VisitCountController {
     public String visitCount() {
         Jedis jedis = new Jedis("redis");
 
-        if (jedis.get("visit") == null)
-            jedis.set("visit", String.valueOf(0));
-
-        int visits = Integer.parseInt(jedis.get("visit"));
-        jedis.set("visit", String.valueOf(visits + 1));
-
-        return String.valueOf(visits);
+        String visits = jedis.get("visit");
+        if (visits != null) {
+            jedis.set("visit", String.valueOf(Integer.parseInt(visits) + 1));
+            return visits;
+        } else {
+            jedis.set("visit", String.valueOf(1));
+            return String.valueOf(0);
+        }
     }
 
 }
