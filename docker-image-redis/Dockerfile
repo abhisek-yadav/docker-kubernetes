@@ -12,4 +12,4 @@ CMD ["redis-server"]
 
 
 # to build the image with tag
-# docker build -t abhisek-yadav/docker-image-redis:latest .
+# docker build -t abhisekyadav/docker-image-redis:latest .
